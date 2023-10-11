@@ -1,0 +1,52 @@
+This is only examples of queries I used in Apollo Server to test:
+
+-- Get specific author
+query GameQuery($id: ID!) {
+  author(id: $id) {
+    name,
+    reviews {
+      rating,
+      content
+    }
+  }
+}
+
+-- Get Review with info and all specific game reviews
+query ReviewQuery($id: ID!) {
+  review(id: $id) {
+    rating,
+    game {
+      title,
+      platform,
+      reviews {
+        rating
+      }
+    },
+  }
+}
+
+-- Mutation - delete
+mutation DeleteMutation($id: ID!) {
+  deleteGame(id: $id) {
+    id,
+    title,
+    platform
+  }
+}
+
+-- Mutation - add
+mutation AddMutation($game: AddGameInput!) {
+  addGame(game: $game) {
+    id,
+    title,
+    platform
+  }
+}
+
+-- Mutation - update
+mutation UpdateMutation($id: ID!, $edits: EditGameInput!) {
+  updateGame(id: $id, edits: $edits) {
+    title,
+    platform
+  }
+}
